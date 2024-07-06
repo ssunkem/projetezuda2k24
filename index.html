@@ -1,117 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            width: 100%;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        a {
-            display: block;
-            margin-top: 10px;
-            color: #007BFF;
-            text-decoration: none;
-        }
-    </style>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script defer src="login.js"></script>
 </head>
 <body>
     <div class="login-container">
         <h1>Bem vindo!</h1>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Senha">
-        <button onclick="login()">Entrar</button>
-        <a href="#" onclick="forgotPassword()">Esqueci a senha</a>
-        <a href="#" onclick="register()">Registre-se</a>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p><a href="#">Esqueci a senha</a> | <a href="#">Registre-se</a></p>
     </div>
-
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyD0WkFuUuB4CYxpZ2qGCdzh5329yJWHQiA",
-            authDomain: "projete-2024.firebaseapp.com",
-            projectId: "projete-2024",
-            storageBucket: "projete-2024.appspot.com",
-            messagingSenderId: "775611315252",
-            appId: "1:775611315252:web:cdafe5270c752bc2208661"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        function login() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Signed in
-                    alert('Login successful!');
-                })
-                .catch((error) => {
-                    alert('Error: ' + error.message);
-                });
-        }
-
-        function forgotPassword() {
-            var email = prompt('Por favor, insira seu email:');
-            firebase.auth().sendPasswordResetEmail(email)
-                .then(() => {
-                    alert('Email de recuperação enviado!');
-                })
-                .catch((error) => {
-                    alert('Error: ' + error.message);
-                });
-        }
-
-        function register() {
-            var email = prompt('Por favor, insira seu email:');
-            var password = prompt('Por favor, insira sua senha:');
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    alert('Usuário registrado com sucesso!');
-                })
-                .catch((error) => {
-                    alert('Error: ' + error.message);
-                });
-        }
-    </script>
 </body>
 </html>
