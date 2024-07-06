@@ -20,9 +20,12 @@ loginForm.addEventListener('submit', (e) => {
     
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+
+    console.log('Tentando login com:', email);
     
     auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
+            console.log('Login bem-sucedido:', userCredential);
             // Login bem-sucedido
             window.location.href = 'home.html';
         })
